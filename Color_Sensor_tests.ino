@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include "Adafruit_TCS34725.h"
 #include "FastLED.h"
+#include <avr/power.h>
  
 // Fixed definitions
 #define DATA_PIN 6                                        
@@ -20,6 +21,9 @@ void setup() {
   
   Serial.begin(9600);
   Serial.println("Color View Test!");
+  
+  // To make it work w/ an 8 Mhz proc (example : Lilypad Arduino)
+  clock_prescale_set(clock_div_2);
   
   // Use this for WS2801 Leds
   //  FastLED.addLeds<LED_TYPE, DATA_PIN, CLOCK_PIN, COLOR_ORDER>(leds, NUM_LEDS);
